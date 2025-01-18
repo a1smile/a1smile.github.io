@@ -231,7 +231,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://a1smile.github.io/blog/2025/01/17/docker/">
+    <link itemprop="mainEntityOfPage" href="https://a1smile.github.io/blog/2025/01/18/docker/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="">
@@ -250,7 +250,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2025/01/17/docker/" itemprop="url">docker</a></h1>
+                <a class="post-title-link" href="/2025/01/18/docker/" itemprop="url">docker</a></h1>
         
 
         <div class="post-meta">
@@ -262,8 +262,8 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2025-01-17T22:52:34+08:00">
-                2025-01-17
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2025-01-18T23:03:14+08:00">
+                2025-01-18
               </time>
             
 
@@ -491,11 +491,165 @@
 <p><strong>注意</strong>：本地目录或文件必须以 <code>/</code> 或 <code>./</code>开头，如果直接以名字开头，会被识别为数据卷名而非本地目录名。</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">-v mysql:/var/lib/mysql # 会被识别为一个数据卷叫mysql，运行时会自动创建这个数据卷</span><br><span class="line">-v ./mysql:/var/lib/mysql # 会被识别为当前目录下的mysql目录，运行时如果不存在会创建目录</span><br></pre></td></tr></table></figure>
 <h5 id="删除并重新创建mysql容器，并完成本地目录挂载："><a href="#删除并重新创建mysql容器，并完成本地目录挂载：" class="headerlink" title="删除并重新创建mysql容器，并完成本地目录挂载："></a>删除并重新创建mysql容器，并完成本地目录挂载：</h5><ul>
-<li>挂载<code>/root/mysql/data</code>到容器内的<code>/var/lib/mysql</code>目录</li>
-<li>挂载<code>/root/mysql/init</code>到容器内的<code>/docker-entrypoint-initdb.d</code>目录（初始化的SQL脚本目录）</li>
-<li>挂载<code>/root/mysql/conf</code>到容器内的<code>/etc/mysql/conf.d</code>目录（这个是MySQL配置文件目录）</li>
+<li><p>挂载<code>/root/mysql/data</code>到容器内的<code>/var/lib/mysql</code>目录</p>
+</li>
+<li><p>挂载<code>/root/mysql/init</code>到容器内的<code>/docker-entrypoint-initdb.d</code>目录（初始化的SQL脚本目录）</p>
+</li>
+<li><p>挂载<code>/root/mysql/conf</code>到容器内的<code>/etc/mysql/conf.d</code>目录（这个是MySQL配置文件目录）</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br></pre></td><td class="code"><pre><span class="line"># 1.删除原来的MySQL容器</span><br><span class="line">docker rm -f mysql</span><br><span class="line"></span><br><span class="line"># 2.进入root目录</span><br><span class="line">cd ~</span><br><span class="line"></span><br><span class="line"># 3.创建并运行新mysql容器，挂载本地目录</span><br><span class="line">docker run -d \</span><br><span class="line">  --name mysql \</span><br><span class="line">  -p 3306:3306 \</span><br><span class="line">  -e TZ=Asia/Shanghai \</span><br><span class="line">  -e MYSQL_ROOT_PASSWORD=123 \</span><br><span class="line">  -v ./mysql/data:/var/lib/mysql \</span><br><span class="line">  -v ./mysql/conf:/etc/mysql/conf.d \</span><br><span class="line">  -v ./mysql/init:/docker-entrypoint-initdb.d \</span><br><span class="line">  mysql</span><br><span class="line"></span><br><span class="line"># 4.查看root目录，可以发现~/mysql/data目录已经自动创建好了</span><br><span class="line">ls -l mysql</span><br><span class="line"># 结果：</span><br><span class="line">总用量 4</span><br><span class="line">drwxr-xr-x. 2 root    root   20 5月  19 15:11 conf</span><br><span class="line">drwxr-xr-x. 7 polkitd root 4096 5月  19 15:11 data</span><br><span class="line">drwxr-xr-x. 2 root    root   23 5月  19 15:11 init</span><br><span class="line"></span><br><span class="line"># 查看data目录，会发现里面有大量数据库数据，说明数据库完成了初始化</span><br><span class="line">ls -l data</span><br><span class="line"></span><br><span class="line"># 5.查看MySQL容器内数据</span><br><span class="line"># 5.1.进入MySQL</span><br><span class="line">docker exec -it mysql mysql -uroot -p123</span><br><span class="line"># 5.2.查看编码表</span><br><span class="line">show variables like &quot;%char%&quot;;</span><br><span class="line"># 5.3.结果，发现编码是utf8mb4没有问题</span><br><span class="line">+--------------------------+--------------------------------+</span><br><span class="line">| Variable_name            | Value                          |</span><br><span class="line">+--------------------------+--------------------------------+</span><br><span class="line">| character_set_client     | utf8mb4                        |</span><br><span class="line">| character_set_connection | utf8mb4                        |</span><br><span class="line">| character_set_database   | utf8mb4                        |</span><br><span class="line">| character_set_filesystem | binary                         |</span><br><span class="line">| character_set_results    | utf8mb4                        |</span><br><span class="line">| character_set_server     | utf8mb4                        |</span><br><span class="line">| character_set_system     | utf8mb3                        |</span><br><span class="line">| character_sets_dir       | /usr/share/mysql-8.0/charsets/ |</span><br><span class="line">+--------------------------+--------------------------------+</span><br><span class="line"></span><br><span class="line"># 6.查看数据</span><br><span class="line"># 6.1.查看数据库</span><br><span class="line">show databases;</span><br><span class="line"># 结果，hmall是黑马商城数据库</span><br><span class="line">+--------------------+</span><br><span class="line">| Database           |</span><br><span class="line">+--------------------+</span><br><span class="line">| hmall              |</span><br><span class="line">| information_schema |</span><br><span class="line">| mysql              |</span><br><span class="line">| performance_schema |</span><br><span class="line">| sys                |</span><br><span class="line">+--------------------+</span><br><span class="line">5 rows in set (0.00 sec)</span><br><span class="line"># 6.2.切换到hmall数据库</span><br><span class="line">use hmall;</span><br><span class="line"># 6.3.查看表</span><br><span class="line">show tables;</span><br><span class="line"># 结果：</span><br><span class="line">+-----------------+</span><br><span class="line">| Tables_in_hmall |</span><br><span class="line">+-----------------+</span><br><span class="line">| address         |</span><br><span class="line">| cart            |</span><br><span class="line">| item            |</span><br><span class="line">| order           |</span><br><span class="line">| order_detail    |</span><br><span class="line">| order_logistics |</span><br><span class="line">| pay_order       |</span><br><span class="line">| user            |</span><br><span class="line">+-----------------+</span><br><span class="line"># 6.4.查看address表数据</span><br><span class="line">+----+---------+----------+--------+----------+-------------+---------------+-----------+------------+-------+</span><br><span class="line">| id | user_id | province | city   | town     | mobile      | street        | contact   | is_default | notes |</span><br><span class="line">+----+---------+----------+--------+----------+-------------+---------------+-----------+------------+-------+</span><br><span class="line">| 59 |       1 | 北京     | 北京   | 朝阳区    | 13900112222 | 金燕龙办公楼   | 李佳诚    | 0          | NULL  |</span><br><span class="line">| 60 |       1 | 北京     | 北京   | 朝阳区    | 13700221122 | 修正大厦       | 李佳红    | 0          | NULL  |</span><br><span class="line">| 61 |       1 | 上海     | 上海   | 浦东新区  | 13301212233 | 航头镇航头路   | 李佳星    | 1          | NULL  |</span><br><span class="line">| 63 |       1 | 广东     | 佛山   | 永春      | 13301212233 | 永春武馆       | 李晓龙    | 0          | NULL  |</span><br><span class="line">+----+---------+----------+--------+----------+-------------+---------------+-----------+------------+-------+</span><br><span class="line">4 rows in set (0.00 sec)</span><br></pre></td></tr></table></figure>
+</li>
 </ul>
-<h2 id="自定义镜像"><a href="#自定义镜像" class="headerlink" title="自定义镜像"></a>自定义镜像</h2><h2 id="网络"><a href="#网络" class="headerlink" title="网络"></a>网络</h2><h1 id="部署"><a href="#部署" class="headerlink" title="部署"></a>部署</h1><h2 id="MySQL部署"><a href="#MySQL部署" class="headerlink" title="MySQL部署"></a>MySQL部署</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">docker run -d \</span><br><span class="line">  --name mysql \</span><br><span class="line">  -p 3306:3306 \</span><br><span class="line">  -e TZ=Asia/shanghai \</span><br><span class="line">  -e MYSQL_ROOT_PASSWORD=123 \</span><br><span class="line">  mysql</span><br></pre></td></tr></table></figure>
+<h2 id="自定义镜像"><a href="#自定义镜像" class="headerlink" title="自定义镜像"></a>自定义镜像</h2><h3 id="镜像结构"><a href="#镜像结构" class="headerlink" title="镜像结构"></a>镜像结构</h3><p>镜像就是包含了应用程序、程序设计的系统函数库、运行配置等文件的文件包。构建镜像的过程其实就是把上述文件打包的过程。</p>
+<ul>
+<li><p><code>`</code><br>部署一个Java应用的步骤：</p>
+<ul>
+<li>1.准备一个Linux服务器</li>
+<li>2.安装JRE并配置环境变量</li>
+<li>3.拷贝jar包</li>
+<li>4.运行jar包<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">- ```</span><br><span class="line">  构建一个Java镜像的步骤：</span><br><span class="line">  - 1.准备一个Linux运行环境</span><br><span class="line">  - 2.安装JRE并配置环境变量</span><br><span class="line">  - 3.拷贝jar包</span><br><span class="line">  - 4.编写运行脚本</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+</ul>
+<p>上述步骤中的每一次操作其实都是在生产一些文件（系统运行环境、函数库、配置最终都是磁盘文件），所以<strong>镜像就是一堆文件的集合</strong>。</p>
+<p>但需要注意的是，镜像文件不是随意堆放的，而是按照操作的步骤分层叠加而成，每一层形成的文件都会单独打包并标记一个唯一id，称为<strong>Layer</strong>（<strong>层</strong>）。这样，如果我们构建时用到的某些层其他人已经制作过，就可以直接拷贝使用这些层，而不用重复制作。</p>
+<p>例如，第一步中需要的Linux运行环境，通用性就很强，所以Docker官方就制作了这样的只包含Linux运行环境的镜像。我们在制作java镜像时，就无需重复制作，直接使用Docker官方提供的CentOS或Ubuntu镜像作为基础镜像。然后再搭建其它层即可，这样逐层搭建，最终整个Java项目的镜像结构如图所示：<img src="D:\学习资料\实验室培训\运维\image\image-20250118204440518.png" alt="image-20250118204440518"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">镜像结构</span><br><span class="line">入口（Entrypoint）</span><br><span class="line">镜像运行入口，一般是程序启动的脚本和参数</span><br><span class="line">层（Layer）</span><br><span class="line">在Baselmage基础上添加安装包、依赖、配置等，每次操作都形成新的一层</span><br><span class="line">基础镜像（Baselmage）</span><br><span class="line">应用依赖的系统函数库、环境、配置、文件等</span><br></pre></td></tr></table></figure>
+<p>分层好处：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">- 可以共享一些基础镜像</span><br><span class="line">- 可以分层优化</span><br></pre></td></tr></table></figure>
+<h3 id="Dockerfile"><a href="#Dockerfile" class="headerlink" title="Dockerfile"></a>Dockerfile</h3><p><strong>Dockerfile</strong>就是一个文本文件，其中包含一个个的<strong>指令</strong>（Instruction），用指令来说明要执行什么操作来构建镜像。将来Docker可以根据Dockerfile帮我们构建镜像。常见指令如下：</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left"><strong>指令</strong></th>
+<th style="text-align:left"><strong>说明</strong></th>
+<th style="text-align:left"><strong>示例</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"><strong>FROM</strong></td>
+<td style="text-align:left">指定基础镜像</td>
+<td style="text-align:left"><code>FROM centos:6</code></td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>ENV</strong></td>
+<td style="text-align:left">设置环境变量，可在后面指令使用</td>
+<td style="text-align:left"><code>ENV key value</code></td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>COPY</strong></td>
+<td style="text-align:left">拷贝本地文件到镜像的指定目录</td>
+<td style="text-align:left"><code>COPY ./xx.jar /tmp/app.jar</code></td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>RUN</strong></td>
+<td style="text-align:left">执行Linux的shell命令，一般是安装过程的命令</td>
+<td style="text-align:left"><code>RUN yum install gcc</code></td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>EXPOSE</strong></td>
+<td style="text-align:left">指定容器运行时监听的端口，是给镜像使用者看的</td>
+<td style="text-align:left">EXPOSE 8080</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>ENTRYPOINT</strong></td>
+<td style="text-align:left">镜像中应用的启动命令，容器运行时调用</td>
+<td style="text-align:left">ENTRYPOINT java -jar xx.jar</td>
+</tr>
+</tbody>
+</table>
+<p>对应语法的官方文档：</p>
+<p><a target="_blank" rel="noopener" href="https://docs.docker.com/engine/reference/builder/">https://docs.docker.com/engine/reference/builder/</a></p>
+<p>作用：Dockerfile就是利用固定的指令来描述镜像的结构和构建过程，这样Docker才可以依次来构建镜像</p>
+<p><strong>例如，要基于Ubuntu镜像来构建一个Java应用，其Dockerfile内容如下：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"># 指定基础镜像</span><br><span class="line">FROM ubuntu:16.04</span><br><span class="line"># 配置环境变量，JDK的安装目录、容器内时区</span><br><span class="line">ENV JAVA_DIR=/usr/local</span><br><span class="line">ENV TZ=Asia/Shanghai</span><br><span class="line"># 拷贝jdk和java项目的包</span><br><span class="line">COPY ./jdk8.tar.gz $JAVA_DIR/</span><br><span class="line">COPY ./docker-demo.jar /tmp/app.jar</span><br><span class="line"># 设定时区</span><br><span class="line">RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime &amp;&amp; echo $TZ &gt; /etc/timezone</span><br><span class="line"># 安装JDK</span><br><span class="line">RUN cd $JAVA_DIR \</span><br><span class="line"> &amp;&amp; tar -xf ./jdk8.tar.gz \</span><br><span class="line"> &amp;&amp; mv ./jdk1.8.0_144 ./java8</span><br><span class="line"># 配置环境变量</span><br><span class="line">ENV JAVA_HOME=$JAVA_DIR/java8</span><br><span class="line">ENV PATH=$PATH:$JAVA_HOME/bin</span><br><span class="line"># 指定项目监听的端口</span><br><span class="line">EXPOSE 8080</span><br><span class="line"># 入口，java项目的启动命令</span><br><span class="line">ENTRYPOINT [&quot;java&quot;, &quot;-jar&quot;, &quot;/app.jar&quot;]</span><br></pre></td></tr></table></figure>
+<p>我们会有很多很多java项目需要打包为镜像，他们都需要Linux系统环境、JDK环境这两层，只有上面的3层不同（因为jar包不同）。如果每次制作java镜像都重复制作前两层镜像，会很麻烦。</p>
+<p>所以，就有人提供了基础的系统加JDK环境，我们在此基础上制作java镜像，就可以省去JDK的配置了：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"># 基础镜像</span><br><span class="line">FROM openjdk:11.0-jre-buster</span><br><span class="line"># 设定时区</span><br><span class="line">ENV TZ=Asia/Shanghai</span><br><span class="line">RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime &amp;&amp; echo $TZ &gt; /etc/timezone</span><br><span class="line"># 拷贝jar包</span><br><span class="line">COPY docker-demo.jar /app.jar</span><br><span class="line"># 入口</span><br><span class="line">ENTRYPOINT [&quot;java&quot;, &quot;-jar&quot;, &quot;/app.jar&quot;]</span><br></pre></td></tr></table></figure>
+<h3 id="构建镜像"><a href="#构建镜像" class="headerlink" title="构建镜像"></a>构建镜像</h3><p>当Dockerfile文件写好以后，就可以利用命令来构建镜像了。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"># 进入镜像目录</span><br><span class="line">cd /root/demo</span><br><span class="line"># 开始构建</span><br><span class="line">docker build -t docker-demo:1.0 .</span><br></pre></td></tr></table></figure>
+<p>命令说明：</p>
+<ul>
+<li><p><code>docker build</code>: 就是构建一个docker镜像</p>
+</li>
+<li><p><code>-t docker-demo:1.0</code> ：<code>-t</code>参数是指定镜像的名称（<code>repository</code>和<code>tag</code>）</p>
+</li>
+<li><p><code>.</code> : (前面有个空格)最后的点是指构建时Dockerfile所在路径，由于我们进入了demo目录，所以指定的是<code>.</code>代表当前目录，也可以直接指定Dockerfile目录：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># 直接指定Dockerfile目录</span><br><span class="line">docker build -t docker-demo:1.0 /root/demo</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>结果:</p>
+<p><img src="D:\学习资料\实验室培训\运维\image\image-20250118212643856.png" alt="image-20250118212643856" style="zoom:50%;" /></p>
+<p>查看镜像列表：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"># 查看镜像列表：</span><br><span class="line">docker images</span><br><span class="line"># 结果</span><br><span class="line">REPOSITORY    TAG       IMAGE ID       CREATED          SIZE</span><br><span class="line">docker-demo   1.0       d6ab0b9e64b9   27 minutes ago   327MB</span><br><span class="line">nginx         latest    605c77e624dd   16 months ago    141MB</span><br><span class="line">mysql         latest    3218b38490ce   17 months ago    516MB</span><br></pre></td></tr></table></figure>
+<p>然后尝试运行该镜像：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"># 1.创建并运行容器</span><br><span class="line">docker run -d --name dd -p 8080:8080 docker-demo:1.0</span><br><span class="line"># 2.查看容器</span><br><span class="line">dps</span><br><span class="line"># 结果</span><br><span class="line">CONTAINER ID   IMAGE             PORTS                                                  STATUS         NAMES</span><br><span class="line">78a000447b49   docker-demo:1.0   0.0.0.0:8080-&gt;8080/tcp, :::8090-&gt;8090/tcp              Up 2 seconds   dd</span><br><span class="line">f63cfead8502   mysql             0.0.0.0:3306-&gt;3306/tcp, :::3306-&gt;3306/tcp, 33060/tcp   Up 2 hours     mysql</span><br><span class="line"></span><br><span class="line"># 3.访问</span><br><span class="line">curl localhost:8080/hello/count</span><br><span class="line"># 结果：</span><br><span class="line">&lt;h5&gt;欢迎访问黑马商城, 这是您第1次访问&lt;h5&gt;</span><br></pre></td></tr></table></figure>
+<h2 id="网络"><a href="#网络" class="headerlink" title="网络"></a>网络</h2><p>Java项目往往需要访问其它各种中间件，例如MySQL、Redis等。，我们的容器之间能否互相访问呢？</p>
+<p>首先，我们查看下MySQL容器的详细信息，重点关注其中的网络IP地址：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"># 1.用基本命令，寻找Networks.bridge.IPAddress属性</span><br><span class="line">docker inspect mysql</span><br><span class="line"># 也可以使用format过滤结果</span><br><span class="line">docker inspect --format=&#x27;&#123;&#123;range .NetworkSettings.Networks&#125;&#125;&#123;&#123;println .IPAddress&#125;&#125;&#123;&#123;end&#125;&#125;&#x27; mysql</span><br><span class="line"># 得到IP地址如下：</span><br><span class="line">172.17.0.2</span><br><span class="line"></span><br><span class="line"># 2.然后通过命令进入dd容器</span><br><span class="line">docker exec -it dd bash</span><br><span class="line"></span><br><span class="line"># 3.在容器内，通过ping命令测试网络</span><br><span class="line">ping 172.17.0.2</span><br><span class="line"># 结果</span><br><span class="line">PING 172.17.0.2 (172.17.0.2) 56(84) bytes of data.</span><br><span class="line">64 bytes from 172.17.0.2: icmp_seq=1 ttl=64 time=0.053 ms</span><br><span class="line">64 bytes from 172.17.0.2: icmp_seq=2 ttl=64 time=0.059 ms</span><br><span class="line">64 bytes from 172.17.0.2: icmp_seq=3 ttl=64 time=0.058 ms</span><br></pre></td></tr></table></figure>
+<p>发现可以互联，没有问题</p>
+<p>但是，容器的网络IP其实是一个虚拟的IP，其值并不固定与某一个容器绑定，如果我们在开发时写死某个IP，而在部署时很可能MySQL容器的IP会发生变化，连接会失败。</p>
+<p>所以，我们必须借助于docker的网络功能来解决这个问题，官方文档：</p>
+<p><a target="_blank" rel="noopener" href="https://docs.docker.com/engine/reference/commandline/network/">https://docs.docker.com/engine/reference/commandline/network/</a></p>
+<p>加入自定义网络的容器才可以通过容器名互相访问，Docker的网络操作命令如下：</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left"><strong>命令</strong></th>
+<th style="text-align:left"><strong>说明</strong></th>
+<th style="text-align:left"><strong>文档地址</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">docker network create</td>
+<td style="text-align:left">创建一个网络</td>
+<td style="text-align:left"><a target="_blank" rel="noopener" href="https://docs.docker.com/engine/reference/commandline/network_create/">docker network create</a></td>
+</tr>
+<tr>
+<td style="text-align:left">docker network ls</td>
+<td style="text-align:left">查看所有网络</td>
+<td style="text-align:left"><a target="_blank" rel="noopener" href="https://docs.docker.com/engine/reference/commandline/network_ls/">docs.docker.com</a></td>
+</tr>
+<tr>
+<td style="text-align:left">docker network rm</td>
+<td style="text-align:left">删除指定网络</td>
+<td style="text-align:left"><a target="_blank" rel="noopener" href="https://docs.docker.com/engine/reference/commandline/network_rm/">docs.docker.com</a></td>
+</tr>
+<tr>
+<td style="text-align:left">docker network prune</td>
+<td style="text-align:left">清除未使用的网络</td>
+<td style="text-align:left"><a target="_blank" rel="noopener" href="https://docs.docker.com/engine/reference/commandline/network_prune/">docs.docker.com</a></td>
+</tr>
+<tr>
+<td style="text-align:left">docker network connect</td>
+<td style="text-align:left">使指定容器连接加入某网络</td>
+<td style="text-align:left"><a target="_blank" rel="noopener" href="https://docs.docker.com/engine/reference/commandline/network_connect/">docs.docker.com</a></td>
+</tr>
+<tr>
+<td style="text-align:left">docker network disconnect</td>
+<td style="text-align:left">使指定容器连接离开某网络</td>
+<td style="text-align:left"><a target="_blank" rel="noopener" href="https://docs.docker.com/engine/reference/commandline/network_disconnect/">docker network disconnect</a></td>
+</tr>
+<tr>
+<td style="text-align:left">docker network inspect</td>
+<td style="text-align:left">查看网络详细信息</td>
+<td style="text-align:left"><a target="_blank" rel="noopener" href="https://docs.docker.com/engine/reference/commandline/network_inspect/">docker network inspect</a></td>
+</tr>
+</tbody>
+</table>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ip addr</span><br></pre></td></tr></table></figure>
+<ul>
+<li>可以看到虚拟机上的所有网卡</li>
+</ul>
+<h5 id="演示案例：自定义网络"><a href="#演示案例：自定义网络" class="headerlink" title="演示案例：自定义网络"></a>演示案例：自定义网络</h5><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"># 1.首先通过命令创建一个网络</span><br><span class="line">docker network create hmall</span><br><span class="line"></span><br><span class="line"># 2.然后查看网络</span><br><span class="line">docker network ls</span><br><span class="line"># 结果：</span><br><span class="line">NETWORK ID     NAME      DRIVER    SCOPE</span><br><span class="line">639bc44d0a87   bridge    bridge    local</span><br><span class="line">403f16ec62a2   hmall     bridge    local</span><br><span class="line">0dc0f72a0fbb   host      host      local</span><br><span class="line">cd8d3e8df47b   none      null      local</span><br><span class="line"># 其中，除了hmall以外，其它都是默认的网络</span><br><span class="line"></span><br><span class="line"># 3.让dd和mysql都加入该网络，注意，在加入网络时可以通过--alias给容器起别名</span><br><span class="line"># 这样该网络内的其它容器可以用别名互相访问！</span><br><span class="line"># 3.1.mysql容器，指定别名为db，另外每一个容器都有一个别名是容器名</span><br><span class="line">docker network connect hmall mysql --alias db</span><br><span class="line"># 3.2.db容器，也就是我们的java项目</span><br><span class="line">docker network connect hmall dd</span><br><span class="line"></span><br><span class="line"># 4.进入dd容器，尝试利用别名访问db</span><br><span class="line"># 4.1.进入容器</span><br><span class="line">docker exec -it dd bash</span><br><span class="line"># 4.2.用db别名访问</span><br><span class="line">ping db</span><br><span class="line"># 结果</span><br><span class="line">PING db (172.18.0.2) 56(84) bytes of data.</span><br><span class="line">64 bytes from mysql.hmall (172.18.0.2): icmp_seq=1 ttl=64 time=0.070 ms</span><br><span class="line">64 bytes from mysql.hmall (172.18.0.2): icmp_seq=2 ttl=64 time=0.056 ms</span><br><span class="line"># 4.3.用容器名访问</span><br><span class="line">ping mysql</span><br><span class="line"># 结果：</span><br><span class="line">PING mysql (172.18.0.2) 56(84) bytes of data.</span><br><span class="line">64 bytes from mysql.hmall (172.18.0.2): icmp_seq=1 ttl=64 time=0.044 ms</span><br><span class="line">64 bytes from mysql.hmall (172.18.0.2): icmp_seq=2 ttl=64 time=0.054 ms</span><br></pre></td></tr></table></figure>
+<p><strong>总结</strong>：</p>
+<ul>
+<li>在自定义网络中，可以给容器起多个别名，默认的别名是容器名本身</li>
+<li>在同一个自定义网络中的容器，可以通过别名互相访问 </li>
+</ul>
+<h1 id="部署"><a href="#部署" class="headerlink" title="部署"></a>部署</h1><h2 id="MySQL部署"><a href="#MySQL部署" class="headerlink" title="MySQL部署"></a>MySQL部署</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">docker run -d \</span><br><span class="line">  --name mysql \</span><br><span class="line">  -p 3306:3306 \</span><br><span class="line">  -e TZ=Asia/shanghai \</span><br><span class="line">  -e MYSQL_ROOT_PASSWORD=123 \</span><br><span class="line">  mysql</span><br></pre></td></tr></table></figure>
 <ul>
 <li><p>docker run  ：创建并运行一个容器</p>
 </li>
@@ -525,6 +679,207 @@
 </ul>
 </li>
 </ul>
+<h2 id="部署Java应用"><a href="#部署Java应用" class="headerlink" title="部署Java应用"></a>部署Java应用</h2><p>部署的容器及端口说明：</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left"><strong>项目</strong></th>
+<th style="text-align:left"><strong>容器名</strong></th>
+<th style="text-align:left"><strong>端口</strong></th>
+<th style="text-align:left"><strong>备注</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">hmall</td>
+<td style="text-align:left">hmall</td>
+<td style="text-align:left">8080</td>
+<td style="text-align:left">黑马商城后端API入口</td>
+</tr>
+<tr>
+<td style="text-align:left">hmall-portal</td>
+<td style="text-align:left">nginx</td>
+<td style="text-align:left">18080</td>
+<td style="text-align:left">黑马商城用户端入口</td>
+</tr>
+<tr>
+<td style="text-align:left">hmall-admin</td>
+<td style="text-align:left">18081</td>
+<td style="text-align:left">黑马商城管理端入口</td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td style="text-align:left">mysql</td>
+<td style="text-align:left">mysql</td>
+<td style="text-align:left">3306</td>
+<td style="text-align:left">数据库</td>
+</tr>
+</tbody>
+</table>
+<p><code>hmall</code>项目是一个maven聚合项目，使用IDEA打开<code>hmall</code>项目，查看项目结构如图：</p>
+<p><img src="D:\学习资料\实验室培训\运维\image\image-20250118224843305.png" alt="image-20250118224843305"></p>
+<p>我们要部署的就是其中的<code>hm-service</code>，其中的配置文件采用了多环境的方式：<img src="D:\学习资料\实验室培训\运维\image\image-20250118224827073.png" alt="image-20250118224827073"></p>
+<p>其中的<code>application-dev.yaml</code>是部署到开发环境的配置，<code>application-local.yaml</code>是本地运行时的配置。</p>
+<p>查看application.yaml，你会发现其中的JDBC地址并未写死，而是读取变量：<img src="D:\学习资料\实验室培训\运维\image\image-20250118224911797.png" alt="image-20250118224911797"></p>
+<p>这两个变量在<code>application-dev.yaml</code>和<code>application-local.yaml</code>中并不相同：</p>
+<p><img src="D:\学习资料\实验室培训\运维\image\image-20250118224936404.png" alt="image-20250118224936404"></p>
+<p>在dev开发环境（也就是Docker部署时）采用了mysql作为地址，刚好是我们的mysql容器名，只要两者在一个网络，就一定能互相访问。</p>
+<p>我们将项目打包：<img src="D:\学习资料\实验室培训\运维\image\image-20250118225005973.png" alt="image-20250118225005973"></p>
+<p>结果：<img src="D:\学习资料\实验室培训\运维\image\image-20250118225023960.png" alt="image-20250118225023960"></p>
+<p>将<code>hm-service</code>目录下的<code>Dockerfile</code>和<code>hm-service/target</code>目录下的<code>hm-service.jar</code>一起上传到虚拟机的<code>root</code>目录：<img src="D:\学习资料\实验室培训\运维\image\image-20250118225045748.png" alt="image-20250118225045748"></p>
+<p>部署项目：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"># 1.构建项目镜像，不指定tag，则默认为latest</span><br><span class="line">docker build -t hmall .</span><br><span class="line"></span><br><span class="line"># 2.查看镜像</span><br><span class="line">docker images</span><br><span class="line"># 结果</span><br><span class="line">REPOSITORY    TAG       IMAGE ID       CREATED          SIZE</span><br><span class="line">hmall         latest    0bb07b2c34b9   43 seconds ago   362MB</span><br><span class="line">docker-demo   1.0       49743484da68   24 hours ago     327MB</span><br><span class="line">nginx         latest    605c77e624dd   16 months ago    141MB</span><br><span class="line">mysql         latest    3218b38490ce   17 months ago    516MB</span><br><span class="line"></span><br><span class="line"># 3.创建并运行容器，并通过--network将其加入hmall网络，这样才能通过容器名访问mysql</span><br><span class="line">docker run -d --name hmall --network hmall -p 8080:8080 hmall</span><br></pre></td></tr></table></figure>
+<p>测试，通过浏览器访问：http://虚拟机地址:8080/search/list</p>
+<h2 id="部署前端"><a href="#部署前端" class="headerlink" title="部署前端"></a>部署前端</h2><p><code>hmall-portal</code>和<code>hmall-admin</code>是前端代码，需要基于nginx部署。在课前资料中已经给大家提供了nginx的部署目录：<img src="D:\学习资料\实验室培训\运维\image\image-20250118225200601.png" alt="image-20250118225200601"></p>
+<p>其中：</p>
+<ul>
+<li><code>html</code>是静态资源目录，我们需要把<code>hmall-portal</code>以及<code>hmall-admin</code>都复制进去</li>
+<li><code>nginx.conf</code>是nginx的配置文件，主要是完成对<code>html</code>下的两个静态资源目录做代理</li>
+</ul>
+<p>我们现在要做的就是把整个nginx目录上传到虚拟机的<code>/root</code>目录下：<img src="D:\学习资料\实验室培训\运维\image\image-20250118225217639.png" alt="image-20250118225217639"></p>
+<p>然后创建nginx容器并完成两个挂载：</p>
+<ul>
+<li>把<code>/root/nginx/nginx.conf</code>挂载到<code>/etc/nginx/ng`</code>inx.conf`</li>
+<li>把<code>/root/nginx/html</code>挂载到<code>/usr/share/nginx/html</code></li>
+</ul>
+<p>由于需要让nginx同时代理hmall-portal和hmall-admin两套前端资源，因此我们需要暴露两个端口：</p>
+<ul>
+<li>18080：对应hmall-portal</li>
+<li>18081：对应hmall-admin</li>
+</ul>
+<p>命令如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">docker run -d \</span><br><span class="line">  --name nginx \</span><br><span class="line">  -p 18080:18080 \</span><br><span class="line">  -p 18081:18081 \</span><br><span class="line">  -v /root/nginx/html:/usr/share/nginx/html \</span><br><span class="line">  -v /root/nginx/nginx.conf:/etc/nginx/nginx.conf \</span><br><span class="line">  --network hmall \</span><br><span class="line">  nginx</span><br></pre></td></tr></table></figure>
+<p>测试，通过浏览器访问：http://虚拟机ip:18080</p>
+<h2 id="DockerCompose"><a href="#DockerCompose" class="headerlink" title="DockerCompose"></a>DockerCompose</h2><p>我们部署一个简单的java项目，其中包含3个容器：</p>
+<ul>
+<li>MySQL</li>
+<li>Nginx</li>
+<li>Java项目</li>
+</ul>
+<p>而稍微复杂的项目，其中还会有各种各样的其它中间件，需要部署的东西远不止3个。如果还像之前那样手动的逐一部署，就太麻烦了。</p>
+<p>而Docker Compose就可以帮助我们实现<strong>多个相互关联的Docker容器的快速部署</strong>。它允许用户通过一个单独的 docker-compose.yml 模板文件（YAML 格式）来定义一组相关联的应用容器。</p>
+<h3 id="基本语法"><a href="#基本语法" class="headerlink" title="基本语法"></a>基本语法</h3><p>docker-compose.yml文件的基本语法可以参考官方文档：</p>
+<p><a target="_blank" rel="noopener" href="https://docs.docker.com/compose/compose-file/compose-file-v3/">https://docs.docker.com/compose/compose-file/compose-file-v3/</a></p>
+<p>docker-compose文件中可以定义多个相互关联的应用容器，每一个应用容器被称为一个服务（service）。由于service就是在定义某个应用的运行时参数，因此与<code>docker run</code>参数非常相似。</p>
+<p>举例来说，用docker run部署MySQL的命令如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">docker run -d \</span><br><span class="line">  --name mysql \</span><br><span class="line">  -p 3306:3306 \</span><br><span class="line">  -e TZ=Asia/Shanghai \</span><br><span class="line">  -e MYSQL_ROOT_PASSWORD=123 \</span><br><span class="line">  -v ./mysql/data:/var/lib/mysql \</span><br><span class="line">  -v ./mysql/conf:/etc/mysql/conf.d \</span><br><span class="line">  -v ./mysql/init:/docker-entrypoint-initdb.d \</span><br><span class="line">  --network hmall</span><br><span class="line">  mysql</span><br></pre></td></tr></table></figure>
+<p>如果用<code>docker-compose.yml</code>文件来定义，就是这样</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">version: &quot;3.8&quot;</span><br><span class="line"></span><br><span class="line">services:</span><br><span class="line">  mysql:</span><br><span class="line">    image: mysql</span><br><span class="line">    container_name: mysql</span><br><span class="line">    ports:</span><br><span class="line">      - &quot;3306:3306&quot;</span><br><span class="line">    environment:</span><br><span class="line">      TZ: Asia/Shanghai</span><br><span class="line">      MYSQL_ROOT_PASSWORD: 123</span><br><span class="line">    volumes:</span><br><span class="line">      - &quot;./mysql/conf:/etc/mysql/conf.d&quot;</span><br><span class="line">      - &quot;./mysql/data:/var/lib/mysql&quot;</span><br><span class="line">    networks:</span><br><span class="line">      - new</span><br><span class="line">networks:</span><br><span class="line">  new:</span><br><span class="line">    name: hmall</span><br></pre></td></tr></table></figure>
+<p>对比如下：</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left"><strong>docker run 参数</strong></th>
+<th style="text-align:left"><strong>docker compose 指令</strong></th>
+<th style="text-align:left"><strong>说明</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">–name</td>
+<td style="text-align:left">container_name</td>
+<td style="text-align:left">容器名称</td>
+</tr>
+<tr>
+<td style="text-align:left">-p</td>
+<td style="text-align:left">ports</td>
+<td style="text-align:left">端口映射</td>
+</tr>
+<tr>
+<td style="text-align:left">-e</td>
+<td style="text-align:left">environment</td>
+<td style="text-align:left">环境变量</td>
+</tr>
+<tr>
+<td style="text-align:left">-v</td>
+<td style="text-align:left">volumes</td>
+<td style="text-align:left">数据卷配置</td>
+</tr>
+<tr>
+<td style="text-align:left">–network</td>
+<td style="text-align:left">networks</td>
+<td style="text-align:left">网络</td>
+</tr>
+</tbody>
+</table>
+<p>黑马商城部署文件：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line">version: &quot;3.8&quot;</span><br><span class="line"></span><br><span class="line">services:</span><br><span class="line">  mysql:</span><br><span class="line">    image: mysql</span><br><span class="line">    container_name: mysql</span><br><span class="line">    ports:</span><br><span class="line">      - &quot;3306:3306&quot;</span><br><span class="line">    environment:</span><br><span class="line">      TZ: Asia/Shanghai</span><br><span class="line">      MYSQL_ROOT_PASSWORD: 123</span><br><span class="line">    volumes:</span><br><span class="line">      - &quot;./mysql/conf:/etc/mysql/conf.d&quot;</span><br><span class="line">      - &quot;./mysql/data:/var/lib/mysql&quot;</span><br><span class="line">      - &quot;./mysql/init:/docker-entrypoint-initdb.d&quot;</span><br><span class="line">    networks:</span><br><span class="line">      - hm-net</span><br><span class="line">  hmall:</span><br><span class="line">    build: </span><br><span class="line">      context: .</span><br><span class="line">      dockerfile: Dockerfile</span><br><span class="line">    container_name: hmall</span><br><span class="line">    ports:</span><br><span class="line">      - &quot;8080:8080&quot;</span><br><span class="line">    networks:</span><br><span class="line">      - hm-net</span><br><span class="line">    depends_on:</span><br><span class="line">      - mysql</span><br><span class="line">  nginx:</span><br><span class="line">    image: nginx</span><br><span class="line">    container_name: nginx</span><br><span class="line">    ports:</span><br><span class="line">      - &quot;18080:18080&quot;</span><br><span class="line">      - &quot;18081:18081&quot;</span><br><span class="line">    volumes:</span><br><span class="line">      - &quot;./nginx/nginx.conf:/etc/nginx/nginx.conf&quot;</span><br><span class="line">      - &quot;./nginx/html:/usr/share/nginx/html&quot;</span><br><span class="line">    depends_on:</span><br><span class="line">      - hmall</span><br><span class="line">    networks:</span><br><span class="line">      - hm-net</span><br><span class="line">networks:</span><br><span class="line">  hm-net:</span><br><span class="line">    name: hmall</span><br></pre></td></tr></table></figure>
+<h3 id="基础命令"><a href="#基础命令" class="headerlink" title="基础命令"></a>基础命令</h3><p>编写好docker-compose.yml文件，就可以部署项目了。常见的命令：</p>
+<p><a target="_blank" rel="noopener" href="https://docs.docker.com/compose/reference/">https://docs.docker.com/compose/reference/</a></p>
+<p>基本语法如下：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker compose [OPTIONS] [COMMAND]</span><br></pre></td></tr></table></figure>
+<p>其中，OPTIONS和COMMAND都是可选参数，比较常见的有：</p>
+<table>
+<thead>
+<tr>
+<th><strong>类型</strong></th>
+<th><strong>参数或指令</strong></th>
+<th><strong>说明</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Options</td>
+<td>-f</td>
+<td>指定compose文件的路径和名称</td>
+</tr>
+<tr>
+<td>Options</td>
+<td>-p</td>
+<td>指定project名称。project就是当前compose文件中设置的多个service的集合，是逻辑概念</td>
+</tr>
+<tr>
+<td>Commands</td>
+<td>up</td>
+<td>创建并启动所有service容器</td>
+</tr>
+<tr>
+<td>Commands</td>
+<td>down</td>
+<td>停止并移除所有容器、网络</td>
+</tr>
+<tr>
+<td>Commands</td>
+<td>ps</td>
+<td>列出所有启动的容器</td>
+</tr>
+<tr>
+<td>Commands</td>
+<td>logs</td>
+<td>查看指定容器的日志</td>
+</tr>
+<tr>
+<td>Commands</td>
+<td>stop</td>
+<td>停止容器</td>
+</tr>
+<tr>
+<td>Commands</td>
+<td>start</td>
+<td>启动容器</td>
+</tr>
+<tr>
+<td>Commands</td>
+<td>restart</td>
+<td>重启容器</td>
+</tr>
+<tr>
+<td>Commands</td>
+<td>top</td>
+<td>查看运行的进程</td>
+</tr>
+<tr>
+<td>Commands</td>
+<td>exec</td>
+<td>在指定的运行中容器中执行命令</td>
+</tr>
+</tbody>
+</table>
+<p>演示：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br></pre></td><td class="code"><pre><span class="line"># 1.进入root目录</span><br><span class="line">cd /root</span><br><span class="line"></span><br><span class="line"># 2.删除旧容器</span><br><span class="line">docker rm -f $(docker ps -qa)</span><br><span class="line"></span><br><span class="line"># 3.删除hmall镜像</span><br><span class="line">docker rmi hmall</span><br><span class="line"></span><br><span class="line"># 4.清空MySQL数据</span><br><span class="line">rm -rf mysql/data</span><br><span class="line"></span><br><span class="line"># 5.启动所有, -d 参数是后台启动</span><br><span class="line">docker compose up -d</span><br><span class="line"># 结果：</span><br><span class="line">[+] Building 15.5s (8/8) FINISHED</span><br><span class="line"> =&gt; [internal] load build definition from Dockerfile                                    0.0s</span><br><span class="line"> =&gt; =&gt; transferring dockerfile: 358B                                                    0.0s</span><br><span class="line"> =&gt; [internal] load .dockerignore                                                       0.0s</span><br><span class="line"> =&gt; =&gt; transferring context: 2B                                                         0.0s</span><br><span class="line"> =&gt; [internal] load metadata for docker.io/library/openjdk:11.0-jre-buster             15.4s</span><br><span class="line"> =&gt; [1/3] FROM docker.io/library/openjdk:11.0-jre-buster@sha256:3546a17e6fb4ff4fa681c3  0.0s</span><br><span class="line"> =&gt; [internal] load build context                                                       0.0s</span><br><span class="line"> =&gt; =&gt; transferring context: 98B                                                        0.0s</span><br><span class="line"> =&gt; CACHED [2/3] RUN ln -snf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime &amp;&amp; echo   0.0s</span><br><span class="line"> =&gt; CACHED [3/3] COPY hm-service.jar /app.jar                                           0.0s</span><br><span class="line"> =&gt; exporting to image                                                                  0.0s</span><br><span class="line"> =&gt; =&gt; exporting layers                                                                 0.0s</span><br><span class="line"> =&gt; =&gt; writing image sha256:32eebee16acde22550232f2eb80c69d2ce813ed099640e4cfed2193f71  0.0s</span><br><span class="line"> =&gt; =&gt; naming to docker.io/library/root-hmall                                           0.0s</span><br><span class="line">[+] Running 4/4</span><br><span class="line"> ✔ Network hmall    Created                                                             0.2s</span><br><span class="line"> ✔ Container mysql  Started                                                             0.5s</span><br><span class="line"> ✔ Container hmall  Started                                                             0.9s</span><br><span class="line"> ✔ Container nginx  Started                                                             1.5s</span><br><span class="line"></span><br><span class="line"># 6.查看镜像</span><br><span class="line">docker compose images</span><br><span class="line"># 结果</span><br><span class="line">CONTAINER           REPOSITORY          TAG                 IMAGE ID            SIZE</span><br><span class="line">hmall               root-hmall          latest              32eebee16acd        362MB</span><br><span class="line">mysql               mysql               latest              3218b38490ce        516MB</span><br><span class="line">nginx               nginx               latest              605c77e624dd        141MB</span><br><span class="line"></span><br><span class="line"># 7.查看容器</span><br><span class="line">docker compose ps</span><br><span class="line"># 结果</span><br><span class="line">NAME                IMAGE               COMMAND                  SERVICE             CREATED             STATUS              PORTS</span><br><span class="line">hmall               root-hmall          &quot;java -jar /app.jar&quot;     hmall               54 seconds ago      Up 52 seconds       0.0.0.0:8080-&gt;8080/tcp, :::8080-&gt;8080/tcp</span><br><span class="line">mysql               mysql               &quot;docker-entrypoint.s…&quot;   mysql               54 seconds ago      Up 53 seconds       0.0.0.0:3306-&gt;3306/tcp, :::3306-&gt;3306/tcp, 33060/tcp</span><br><span class="line">nginx               nginx               &quot;/docker-entrypoint.…&quot;   nginx               54 seconds ago      Up 52 seconds       80/tcp, 0.0.0.0:18080-18081-&gt;18080-18081/tcp, :::18080-18081-&gt;18080-18081/tcp</span><br></pre></td></tr></table></figure>
+<p>打开浏览器，访问：<a target="_blank" rel="noopener" href="http://yourIp:8080">http://yourIp:8080</a></p>
+<p><strong>参考文档</strong></p>
+<p><a target="_blank" rel="noopener" href="https://b11et3un53m.feishu.cn/wiki/MWQIw4Zvhil0I5ktPHwcoqZdnec">‬‌‌‬⁠‬‌‬‍﻿⁠﻿‌⁠﻿﻿‌‍⁠‬⁠⁠‌‌‌‍⁠⁠day02-Docker - 飞书云文档</a></p>
 
           
         
