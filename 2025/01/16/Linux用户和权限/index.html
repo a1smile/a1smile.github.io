@@ -316,7 +316,7 @@
 </ul>
 <h2 id="su和exit命令"><a href="#su和exit命令" class="headerlink" title="su和exit命令"></a>su和exit命令</h2><p>su命令就是用于账户切换的系统命令，其来源英文单词：Switch User</p>
 <p>语法：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">su [-][用户名]</span><br></pre></td></tr></table></figure>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">su <span class="selector-attr">[-]</span><span class="selector-attr">[用户名]</span></span><br></pre></td></tr></table></figure>
 <ul>
 <li>选项，-，符号是可选的，表示是否在切换用户后加载环境变量，<strong>建议带上</strong></li>
 <li>参数：用户名。表示要切换的用户，用户名也可以省略，省略表示切换到root</li>
@@ -326,7 +326,7 @@
 </ul>
 <h2 id="sudo命令"><a href="#sudo命令" class="headerlink" title="sudo命令"></a>sudo命令</h2><p>为了避免长期使用root用户带来系统损坏，我们可以使用sudo命令，为普通的命令授权，临时以root身份执行</p>
 <p>语法：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo 其他命令</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">sudo</span> 其他命令</span><br></pre></td></tr></table></figure>
 <ul>
 <li>在其他命令之前，带上sudo，即可为这一条命令临时赋予root权限</li>
 <li>但是并不是所有的用户都有权力使用sudo，我们<strong>需要为普通用户配置sudo认证</strong></li>
@@ -335,7 +335,7 @@
 <li><p>切换到root用户，执行 <strong>visudo</strong> 命令，会自动通过vi编辑器打开:/etc/sudoers 也可以输入 <strong>vi   /etc/sudoers</strong></p>
 </li>
 <li><p>在文件的最后添加：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">用户名 ALL =(ALL)   NOPASSWD: ALL</span><br></pre></td></tr></table></figure>
+<figure class="highlight ada"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">用户名 <span class="keyword">ALL</span> =(<span class="keyword">ALL</span>)   NOPASSWD: <span class="keyword">ALL</span></span><br></pre></td></tr></table></figure>
 <ul>
 <li>其中最后的NOPASSWD:ALL表示使用sudo命令，无需输入密码</li>
 </ul>
@@ -362,41 +362,41 @@
 <h2 id="用户组管理"><a href="#用户组管理" class="headerlink" title="用户组管理"></a>用户组管理</h2><p><strong>以下命令需要root用户执行</strong></p>
 <ul>
 <li><p>创建用户组</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">groupadd 用户组名</span><br></pre></td></tr></table></figure>
+<figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">groupadd</span> 用户组名</span><br></pre></td></tr></table></figure>
 </li>
 <li><p>删除用户组</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">groupdel 用户组名</span><br></pre></td></tr></table></figure>
+<figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">groupdel</span> 用户组名</span><br></pre></td></tr></table></figure>
 </li>
 </ul>
 <h2 id="用户管理"><a href="#用户管理" class="headerlink" title="用户管理"></a>用户管理</h2><p><strong>以下命令需要root用户执行</strong></p>
 <ul>
 <li><p>创建用户</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">useradd[-g -d] 用户名</span><br></pre></td></tr></table></figure>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">useradd<span class="selector-attr">[-g -d]</span> 用户名</span><br></pre></td></tr></table></figure>
 <ul>
 <li>选项：-g，指定用户的组，不指定 -g，会创建同名组并自动加入，指定 -g 需要组已经存在，如已经存在同名组，必须使用-g</li>
 <li>选项：-d，指定用户HOME路径，不指定，HOME目录默认在：/home/用户名</li>
 </ul>
 </li>
 <li><p>删除用户</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">userdel[-r] 用户名</span><br></pre></td></tr></table></figure>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">userdel<span class="selector-attr">[-r]</span> 用户名</span><br></pre></td></tr></table></figure>
 <ul>
 <li>选项，-r，删除用户的HOME目录，不使用-r，删除用户时，HOME目录保留</li>
 </ul>
 </li>
 <li><p>查看用户所属组</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">id[用户名]</span><br></pre></td></tr></table></figure>
+<figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">id</span>[用户名]</span><br></pre></td></tr></table></figure>
 <ul>
 <li>参数：用户名，被查看的用户，如果不提供则查看自身</li>
 </ul>
 </li>
 <li><p>修改用户所属组</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">usermod -aG 用户组  用户名</span><br></pre></td></tr></table></figure>
+<figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">usermod</span> -aG 用户组  用户名</span><br></pre></td></tr></table></figure>
 <ul>
 <li>将指定的用户加入指定的用户组</li>
 </ul>
 </li>
 <li><p>查看当前系统中有哪里用户</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">getent passwd</span><br></pre></td></tr></table></figure>
+<figure class="highlight ebnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">getent passwd</span></span><br></pre></td></tr></table></figure>
 <p><img src="D:\学习资料\实验室培训\运维\image\image-20241209204002664.png" alt="image-20241209204002664"></p>
 </li>
 </ul>
@@ -404,7 +404,7 @@
 <p>用户名：密码(x)：用户ID：组ID：描述信息(无用)：HOME目录：执行终端(默认bash)</p>
 <ul>
 <li><p>查看当前系统中有哪些用户组</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">getent group</span><br></pre></td></tr></table></figure>
+<figure class="highlight axapta"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">getent <span class="keyword">group</span></span><br></pre></td></tr></table></figure>
 <p><img src="D:\学习资料\实验室培训\运维\image\image-20241209204329211.png" alt="image-20241209204329211"></p>
 </li>
 </ul>
@@ -449,7 +449,7 @@
 <h2 id="修改权限控制-—chmod"><a href="#修改权限控制-—chmod" class="headerlink" title="修改权限控制 —chmod"></a>修改权限控制 —chmod</h2><p>我们可以通过chmod命令，修改文件、文件夹的权限信息。</p>
 <p><strong>注意：只有文件、文件夹的所属用户或root用户可以修改</strong></p>
 <p>语法：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">chmod [-R] 权限 文件或文件夹</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">chmod</span> [-R] 权限 文件或文件夹</span><br></pre></td></tr></table></figure>
 <ul>
 <li>选项：-R，对文件夹内的全部内容应用同样的操作</li>
 </ul>
@@ -467,7 +467,7 @@
 <h2 id="修改权限控制-—chown"><a href="#修改权限控制-—chown" class="headerlink" title="修改权限控制 —chown"></a>修改权限控制 —chown</h2><p>使用chown命令，可以修改文件、文件夹的所属用户和用户组</p>
 <p><strong>普通用户无法修改所属为其他用户或组，所以此命令之适用于root用户执行</strong></p>
 <p>语法：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">chown [-R][用户][:][用户组] 文件或文件夹</span><br></pre></td></tr></table></figure>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">chown <span class="selector-attr">[-R]</span><span class="selector-attr">[用户]</span><span class="selector-attr">[:]</span><span class="selector-attr">[用户组]</span> 文件或文件夹</span><br></pre></td></tr></table></figure>
 <ul>
 <li>选项，-R，同chmod，对文件夹内全部内容应用相同规则</li>
 <li>选项，用户，修改所属用户</li>

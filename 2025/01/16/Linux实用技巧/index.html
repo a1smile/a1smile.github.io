@@ -394,7 +394,7 @@
 </ul>
 <h1 id="软件安装"><a href="#软件安装" class="headerlink" title="软件安装"></a>软件安装</h1><h2 id="yum命令"><a href="#yum命令" class="headerlink" title="yum命令"></a>yum命令</h2><p>yum：RPM包软件管理器，用于自动化安装配置Linux软件，并可以自动解决依赖问题</p>
 <p>语法：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum[-y][install | remove | search] 软件名称</span><br></pre></td></tr></table></figure>
+<figure class="highlight cmake"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum[-y][<span class="keyword">install</span> | <span class="keyword">remove</span> | search] 软件名称</span><br></pre></td></tr></table></figure>
 <ul>
 <li><p>选项：-y，自动确认，无需手动安装或卸载过程</p>
 </li>
@@ -410,7 +410,7 @@
 <p><strong>Ubuntu</strong>中的安装软件</p>
 <p>apt</p>
 <p>语法：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">apt [-y][jinstall | remove | search] 软件名称</span><br></pre></td></tr></table></figure>
+<figure class="highlight coq"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">apt [-y][jinstall | <span class="type">remove</span> | <span class="type">search</span>] 软件名称</span><br></pre></td></tr></table></figure>
 <p>用法和yum一致，同样需要root权限</p>
 <ul>
 <li>install：安装</li>
@@ -420,7 +420,7 @@
 <h1 id="systemctl命令"><a href="#systemctl命令" class="headerlink" title="systemctl命令"></a>systemctl命令</h1><p>Linux系统很多软件（内置或者第三方）均支持使用systemctl命令控制：启动、停止、开机自启动</p>
 <p>能够被systemctl管理的软件，一般也称之为：服务</p>
 <p><strong>语法：</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">systemctl  start | stop | status | enable | disable 服务名</span><br></pre></td></tr></table></figure>
+<figure class="highlight coq"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">systemctl  start | <span class="type">stop</span> | <span class="type">status</span> | <span class="type">enable</span> | <span class="type">disable</span> 服务名</span><br></pre></td></tr></table></figure>
 <ul>
 <li>start 启动</li>
 <li>stop 停止</li>
@@ -448,7 +448,7 @@
 <h1 id="软连接"><a href="#软连接" class="headerlink" title="软连接"></a>软连接</h1><p>在系统中创建软链接，可以将文件、文件夹链接到其他位置。</p>
 <p>类似windos系统中的《快捷方式》</p>
 <p>语法：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ln -s 参数1 参数2</span><br></pre></td></tr></table></figure>
+<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">ln</span> -s 参数<span class="number">1</span> 参数<span class="number">2</span></span><br></pre></td></tr></table></figure>
 <ul>
 <li>-s选项，创建软连接</li>
 <li>参数1：被链接的文件或文件夹</li>
@@ -461,7 +461,7 @@
 </ul>
 <h1 id="日期和时区"><a href="#日期和时区" class="headerlink" title="日期和时区"></a>日期和时区</h1><h2 id="date命令"><a href="#date命令" class="headerlink" title="date命令"></a>date命令</h2><p>通过date命令可以在命令行中查看系统的时间</p>
 <p>语法：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">date[-d] [+格式化字符串]</span><br></pre></td></tr></table></figure>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">date<span class="selector-attr">[-d]</span> <span class="selector-attr">[+格式化字符串]</span></span><br></pre></td></tr></table></figure>
 <ul>
 <li>-d 按照给定的字符串显示日期，一般用于日期计算</li>
 <li><p>格式化字符串：通过特定的字符串标记，来控制显示的日期格式</p>
@@ -501,23 +501,23 @@
 </li>
 </ul>
 <h2 id="修改Linux时区"><a href="#修改Linux时区" class="headerlink" title="修改Linux时区"></a>修改Linux时区</h2><p>使用root权限，执行如下命令，修改时区为东八区</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">rm -f /etc/localtime</span><br><span class="line">sudo ln -s /usr/share/zoneinfo/Asia/Shanghai /etc/localtime</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">rm</span> -f /etc/localtime</span><br><span class="line"><span class="built_in">sudo</span> <span class="built_in">ln</span> -s /usr/share/zoneinfo/Asia/Shanghai /etc/localtime</span><br></pre></td></tr></table></figure>
 <p>将系统自带的localtime文件删除，        </p>
 <p>并将/usr/share/zoneinfo/Asia/Shanghai文件链接为localtime文件即可</p>
 <h2 id="ntp程序"><a href="#ntp程序" class="headerlink" title="ntp程序"></a>ntp程序</h2><p>我们可以通过ntp程序自动校准系统时间</p>
 <p>安装ntp：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum -y install ntp</span><br></pre></td></tr></table></figure>
+<figure class="highlight cmake"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum -y <span class="keyword">install</span> ntp</span><br></pre></td></tr></table></figure>
 <p>启动并设置开机自启</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">systemctl start ntpd</span><br><span class="line">systemctl enable ntpd</span><br></pre></td></tr></table></figure>
+<figure class="highlight nsis"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="params">system</span>ctl start ntpd</span><br><span class="line"><span class="params">system</span>ctl enable ntpd</span><br></pre></td></tr></table></figure>
 <p>当ntpd启动后，会定期的帮助我们联网校准系统的时间</p>
 <ul>
 <li><p>也可以手动校准（需要root权限）</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ntpdate -u ntp.aliyun.com</span><br></pre></td></tr></table></figure>
+<figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">ntpdate</span> -u ntp.aliyun.com</span><br></pre></td></tr></table></figure>
 <p>通过阿里云提供的服务网址配合ntpdate（安装ntp后会附带这个命令）命令自动校准</p>
 </li>
 </ul>
 <h1 id="IP地址、主机名"><a href="#IP地址、主机名" class="headerlink" title="IP地址、主机名"></a>IP地址、主机名</h1><p>可以通过命令：ifconfig，查看本机的IP地址，如无法使用ifconfig命令，可以安装</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum -y stall net-tools</span><br></pre></td></tr></table></figure>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum -<span class="attribute">y</span> stall net-tools</span><br></pre></td></tr></table></figure>
 <h2 id="特殊IP地址"><a href="#特殊IP地址" class="headerlink" title="特殊IP地址"></a>特殊IP地址</h2><ul>
 <li><p>127.0.0.1  这个IP地址用于指代<strong>本机</strong></p>
 </li>
@@ -533,7 +533,7 @@
 <li><p>可以使用命令：<strong>hostname</strong>查看主机名<img src="D:\学习资料\实验室培训\运维\image\image-20241215141050054.png" alt="image-20241215141050054"></p>
 </li>
 <li><p>可以使用命令：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hostnamectl set-hostname 主机名  </span><br></pre></td></tr></table></figure>
+<figure class="highlight dsconfig"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">hostnamectl</span> <span class="built_in">set-hostname</span> 主机名  </span><br></pre></td></tr></table></figure>
 <p>修改主机名，需要root权限<img src="D:\学习资料\实验室培训\运维\image\image-20241215141301227.png" alt="image-20241215141301227"></p>
 </li>
 <li><p>重新登陆finalshell即可看到主机名已经正确显示<img src="D:\学习资料\实验室培训\运维\image\image-20241215141342728.png" alt="image-20241215141342728"></p>
@@ -562,7 +562,7 @@
 <p><img src="D:\学习资料\实验室培训\运维\image\image-20241215144449500.png" alt="image-20241215144449500"></p>
 <p>等号左右无空格</p>
 <h1 id="网络传输"><a href="#网络传输" class="headerlink" title="网络传输"></a>网络传输</h1><h2 id="下载和网络请求"><a href="#下载和网络请求" class="headerlink" title="下载和网络请求"></a>下载和网络请求</h2><h3 id="ping命令检查服务器是否可联通"><a href="#ping命令检查服务器是否可联通" class="headerlink" title="ping命令检查服务器是否可联通"></a>ping命令检查服务器是否可联通</h3><p>语法：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Ping[-c num] IP或者主机名</span><br></pre></td></tr></table></figure>
+<figure class="highlight armasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="symbol">Ping</span>[-c num] <span class="built_in">IP</span>或者主机名</span><br></pre></td></tr></table></figure>
 <ul>
 <li>选项，-c，检查的次数，不使用-c选项，将无限次数持续检查</li>
 <li>参数：IP或主机名，被检查的服务器的IP地址或主机名地址</li>
@@ -579,7 +579,7 @@
 </ul>
 <h3 id="wget命令下载文件"><a href="#wget命令下载文件" class="headerlink" title="wget命令下载文件"></a>wget命令下载文件</h3><p>wget是非交互式的文件下载器，可以在命令行内下载网络文件</p>
 <p>语法：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wget[-b] url</span><br></pre></td></tr></table></figure>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wget<span class="selector-attr">[-b]</span> url</span><br></pre></td></tr></table></figure>
 <ul>
 <li>选项，-b，可选，后台下载，会将日志写入到当前工作目录的wget-log文件</li>
 <li>参数，url，下载链接</li>
@@ -588,7 +588,7 @@
 <p>可以通过tail -f wget-log 命令持续跟踪监控后台下载</p>
 <h3 id="curl命令发起网络请求"><a href="#curl命令发起网络请求" class="headerlink" title="curl命令发起网络请求"></a>curl命令发起网络请求</h3><p>curl命令口语发送http网络请求，可用于：下载文件、获取信息等</p>
 <p>语法：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">curl [-O] url</span><br></pre></td></tr></table></figure>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">curl <span class="selector-attr">[-O]</span> url</span><br></pre></td></tr></table></figure>
 <ul>
 <li>选项，-O，<strong>用于下载文件</strong>，当url是下载链接是，可以使用此选项保存文件</li>
 <li>参数，url，要发起请求的网络地址</li>
@@ -621,7 +621,7 @@
 <h3 id="查看端口占用"><a href="#查看端口占用" class="headerlink" title="查看端口占用"></a>查看端口占用</h3><h4 id="nmap命令"><a href="#nmap命令" class="headerlink" title="nmap命令"></a>nmap命令</h4><p>使用nmap命令，查看指定IP地址对外暴露的端口</p>
 <p>安装nmap：yum -y install nmap</p>
 <p>语法：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nmap 被查看的IP地址</span><br></pre></td></tr></table></figure>
+<figure class="highlight armasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="symbol">nmap</span> 被查看的<span class="built_in">IP</span>地址</span><br></pre></td></tr></table></figure>
 <p><img src="D:\学习资料\实验室培训\运维\image\image-20241215162521729.png" alt="image-20241215162521729"></p>
 <p>可以看到本机(127.0.0.1)上有4个端口下载被程序占用了</p>
 <p>其中：</p>
@@ -632,9 +632,9 @@
 <li>可以通过netstat命令，查看本机指定端口号的占用情况</li>
 </ul>
 <p>语法：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">netstat -anp | grep 端口号</span><br></pre></td></tr></table></figure>
+<figure class="highlight 1c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">netstat <span class="punctuation">-</span>anp <span class="string">| grep 端口号</span></span><br></pre></td></tr></table></figure>
 <p>安装netstat：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum -y install net-tools</span><br></pre></td></tr></table></figure>
+<figure class="highlight cmake"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum -y <span class="keyword">install</span> net-tools</span><br></pre></td></tr></table></figure>
 <p><img src="D:\学习资料\实验室培训\运维\image\image-20241215163545371.png" alt="image-20241215163545371"></p>
 <p>可以看到，当前系统6000端口，无人使用</p>
 <p><img src="D:\学习资料\实验室培训\运维\image\image-20241215163737586.png" alt="image-20241215163737586"></p>
@@ -645,7 +645,7 @@
 <p>并会为每一个进程分配一个独有的：进程ID（进程号）</p>
 <h2 id="查看进程"><a href="#查看进程" class="headerlink" title="查看进程"></a>查看进程</h2><p>可以通过ps命令查看Linux系统中的进程信息</p>
 <p>语法：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ps[-e -f]</span><br></pre></td></tr></table></figure>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ps<span class="selector-attr">[-e -f]</span></span><br></pre></td></tr></table></figure>
 <p>选项，-e，显示出全部的进程</p>
 <p>选项，-f，以完全格式化的形式列出全部进程的全部信息</p>
 <p>一般来说，固定用法就是：ps -ef 列出全部进程的全部信息</p>
@@ -670,7 +670,7 @@
 </ul>
 <h2 id="关闭进程"><a href="#关闭进程" class="headerlink" title="关闭进程"></a>关闭进程</h2><p>在Linux系统中，可以通过<strong>kill</strong>命令关闭进程</p>
 <p>语法：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">kill [-9] 进程ID</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">kill</span> [-9] 进程ID</span><br></pre></td></tr></table></figure>
 <p>选项，-9，表示强制关闭进程。不使用此选项会向进程发送信号，要求其关闭，但是否关闭，需要看进程自身的处理机制</p>
 <p>不加 -9，结束的时候，显示Terminated，自我结束</p>
 <p>加-9，结束的时候，显示killed，表示强制结束</p>
@@ -678,7 +678,7 @@
 <li>可以通过top命令查看CPU、内存使用情况，类似Windows的任务管理器</li>
 </ul>
 <p>默认<strong>每5秒刷新</strong>一次，语法：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">top</span><br></pre></td></tr></table></figure>
+<figure class="highlight coq"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">top</span></span><br></pre></td></tr></table></figure>
 <p>按q或者ctrl + c退出</p>
 <p><strong>top命令内容详解</strong></p>
 <p><img src="D:\学习资料\实验室培训\运维\image\image-20241215171151137.png" alt="image-20241215171151137"></p>
@@ -714,20 +714,20 @@
 <li>TIME+: 进程使用CPU时间总计，单位10毫秒</li>
 <li>COMMAND: 进程的命令或名称或程序文件路径</li>
 </ul>
-<h2 id="top命令选项"><a href="#top命令选项" class="headerlink" title="top命令选项"></a>top命令选项</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">选项 功能</span><br><span class="line">-P 只显示某个进程的信息</span><br><span class="line">-d 设置刷新时间，默认是5s</span><br><span class="line">-c 显示产生进程的完整命令，默认是进程名</span><br><span class="line">-n 指定刷新次数，比如top-n 3，刷新输出3次后退出</span><br><span class="line">-b 以非交互非全屏模式运行，以批次的方式执行top，一般配合-n指定输出几次统计信息，将输出重定向到指定文件，比如 top -b -n 3 &gt; /tmp/top.tmp</span><br><span class="line">-i 不显示任何闲置(idle)或无用(zombie)的进程</span><br><span class="line">-u 查找特定用户启动的进程</span><br></pre></td></tr></table></figure>
+<h2 id="top命令选项"><a href="#top命令选项" class="headerlink" title="top命令选项"></a>top命令选项</h2><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">选项 功能</span><br><span class="line">-<span class="selector-tag">P</span> 只显示某个进程的信息</span><br><span class="line">-d 设置刷新时间，默认是<span class="number">5s</span></span><br><span class="line">-c 显示产生进程的完整命令，默认是进程名</span><br><span class="line">-n 指定刷新次数，比如<span class="attribute">top</span>-n <span class="number">3</span>，刷新输出<span class="number">3</span>次后退出</span><br><span class="line">-<span class="selector-tag">b</span> 以非交互非全屏模式运行，以批次的方式执行<span class="attribute">top</span>，一般配合-n指定输出几次统计信息，将输出重定向到指定文件，比如 <span class="attribute">top</span> -<span class="selector-tag">b</span> -n <span class="number">3</span> &gt; /tmp/<span class="attribute">top</span><span class="selector-class">.tmp</span></span><br><span class="line">-<span class="selector-tag">i</span> 不显示任何闲置(idle)或无用(zombie)的进程</span><br><span class="line">-u 查找特定用户启动的进程</span><br></pre></td></tr></table></figure>
 <h2 id="top交互式选项"><a href="#top交互式选项" class="headerlink" title="top交互式选项"></a>top交互式选项</h2><p>当top以交互式运行（非-b选项启动），可以用一下交互式命令进行控制</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">按键   功能</span><br><span class="line"></span><br><span class="line">h键   按下h键,会显示帮助画面</span><br><span class="line"></span><br><span class="line">c键   按下c键,会显示产生进程的完整命令,等同于-c参数,再次按下c键,变为默认显示</span><br><span class="line"></span><br><span class="line">f键   按下f键,可以选择需要展示的项目,按下空格前面带*后，表示显示。q（或ESC）表示退出</span><br><span class="line"></span><br><span class="line">M键   按下M键,根据驻留内存大小(RES)排序</span><br><span class="line"></span><br><span class="line">P键   按下P键,根据CPU使用百分比大小进行排序</span><br><span class="line"></span><br><span class="line">T键   按下T键,根据时间/累计时间进行排序</span><br><span class="line"></span><br><span class="line">E键   按下E键,切换顶部内存显示单位</span><br><span class="line"></span><br><span class="line">e键   按下e键,切换进程内存显示单位</span><br><span class="line"></span><br><span class="line">1键   按下1键,切换显示平均负载和启动时间信息。</span><br><span class="line"></span><br><span class="line">i键   按下i键,不显示闲置或无用的进程,等同于-i参数,再次按下,变为默认显示</span><br><span class="line"></span><br><span class="line">t键   按下t键,切换显示CPU状态信息</span><br><span class="line"></span><br><span class="line">m键   按下m键,切换显示内存信息</span><br></pre></td></tr></table></figure>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">按键   功能</span><br><span class="line"></span><br><span class="line">h键   按下h键,会显示帮助画面</span><br><span class="line"></span><br><span class="line">c键   按下c键,会显示产生进程的完整命令,等同于-c参数,再次按下c键,变为默认显示</span><br><span class="line"></span><br><span class="line">f键   按下f键,可以选择需要展示的项目,按下空格前面带*后，表示显示。<span class="selector-tag">q</span>（或ESC）表示退出</span><br><span class="line"></span><br><span class="line">M键   按下M键,根据驻留内存大小(RES)排序</span><br><span class="line"></span><br><span class="line"><span class="selector-tag">P</span>键   按下<span class="selector-tag">P</span>键,根据CPU使用百分比大小进行排序</span><br><span class="line"></span><br><span class="line">T键   按下T键,根据时间/累计时间进行排序</span><br><span class="line"></span><br><span class="line">E键   按下E键,切换顶部内存显示单位</span><br><span class="line"></span><br><span class="line">e键   按下e键,切换进程内存显示单位</span><br><span class="line"></span><br><span class="line"><span class="number">1</span>键   按下<span class="number">1</span>键,切换显示平均负载和启动时间信息。</span><br><span class="line"></span><br><span class="line"><span class="selector-tag">i</span>键   按下<span class="selector-tag">i</span>键,不显示闲置或无用的进程,等同于-<span class="selector-tag">i</span>参数,再次按下,变为默认显示</span><br><span class="line"></span><br><span class="line">t键   按下t键,切换显示CPU状态信息</span><br><span class="line"></span><br><span class="line">m键   按下m键,切换显示内存信息</span><br></pre></td></tr></table></figure>
 <h2 id="磁盘信息监控"><a href="#磁盘信息监控" class="headerlink" title="磁盘信息监控"></a>磁盘信息监控</h2><ul>
 <li>使用df命令，可以查看硬盘的使用情况</li>
 </ul>
 <p>语法：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">df[-h]</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">df</span>[-h]</span><br></pre></td></tr></table></figure>
 <p>选项，-h，以更加人性化的单位显示<img src="D:\学习资料\实验室培训\运维\image\image-20241216130002574.png" alt="image-20241216130002574"></p>
 <ul>
 <li>可以使用iostat查看CPU、磁盘的相关信息</li>
 </ul>
 <p>语法：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">iostat[-x][num1][num2]</span><br></pre></td></tr></table></figure>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">iostat<span class="selector-attr">[-x]</span><span class="selector-attr">[num1]</span><span class="selector-attr">[num2]</span></span><br></pre></td></tr></table></figure>
 <ul>
 <li>选项：-x，显示更多信息</li>
 <li>num1：数字，刷新间隔，num2：数字，刷新几次</li>
@@ -764,7 +764,7 @@
 <li>可以使用sar命令查看网络的相关统计（sar命令十分复杂，目前仅简单用于统计网络）</li>
 </ul>
 <p>语法：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sar -n DEV num1 num2</span><br></pre></td></tr></table></figure>
+<figure class="highlight excel"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sar -<span class="built_in">n</span> DEV num1 num2</span><br></pre></td></tr></table></figure>
 <p>选项：-n，查看网络，DEV表示查看网络接口</p>
 <p>num1：刷新间隔（不填就查看一次结束） </p>
 <p>num2：查看次数（不填无限次数）</p>
@@ -808,7 +808,7 @@
 <h2 id="符号-的作用"><a href="#符号-的作用" class="headerlink" title="符号$的作用"></a>符号$的作用</h2><p>在Linux系统中，$符号被用于取”变量“的值。</p>
 <p>环境变量记录的信息，除了给操作系统自己使用外，如果我们想要取用，也可以使用。</p>
 <p>取得环境变量的值就可以通过语法：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$环境变量名</span><br></pre></td></tr></table></figure>
+<figure class="highlight crystal"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$环</span>境变量名</span><br></pre></td></tr></table></figure>
 <p>来取得</p>
 <p>比如：echo $PATH</p>
 <p>就可以取得PATH这个环境变量的值，并通过echo语句输出出来</p>
@@ -819,15 +819,15 @@
 <h2 id="在Linux中配置环境变量"><a href="#在Linux中配置环境变量" class="headerlink" title="在Linux中配置环境变量"></a>在Linux中配置环境变量</h2><h3 id="Linux环境变量可以用户自行设置"><a href="#Linux环境变量可以用户自行设置" class="headerlink" title="Linux环境变量可以用户自行设置"></a>Linux环境变量可以用户自行设置</h3><p>其中分为：</p>
 <ul>
 <li><p>临时设置：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">语法：</span><br><span class="line">export 变量名=变量值</span><br></pre></td></tr></table></figure>
+<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">语法：</span><br><span class="line"><span class="built_in">export</span> 变量名=变量值</span><br></pre></td></tr></table></figure>
 </li>
 <li><p>永久生效</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">·针对当前用户生效，配置在当前用户的：~/.bashrc文件中</span><br><span class="line">·针对所有用户生效，配置在系统中：/etc/profile文件中</span><br><span class="line">·并通过语法：source 配置文件 ，进行立刻生效，或重新登陆FinalShell生效</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">·针对当前用户生效，配置在当前用户的：~/.bashrc文件中</span><br><span class="line">·针对所有用户生效，配置在系统中：/etc/profile文件中</span><br><span class="line">·并通过语法：<span class="built_in">source</span> 配置文件 ，进行立刻生效，或重新登陆FinalShell生效</span><br></pre></td></tr></table></figure>
 </li>
 </ul>
 <h3 id="自定义环境变量PATH"><a href="#自定义环境变量PATH" class="headerlink" title="自定义环境变量PATH"></a>自定义环境变量PATH</h3><p>环境变量PATH这个项目里面记录了系统执行命令的搜索路径。</p>
 <p>这些搜索路径我们也可以自行添加到PATH中去。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">export PATH=$PATH:自定义路径</span><br></pre></td></tr></table></figure>
+<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">export</span> <span class="attribute">PATH</span>=<span class="variable">$PATH</span>:自定义路径</span><br></pre></td></tr></table></figure>
 <h1 id="文件的上传和下载"><a href="#文件的上传和下载" class="headerlink" title="文件的上传和下载"></a>文件的上传和下载</h1><p>在Finalshell软件的下方窗体中，提供了Liunx的文件系统视图，可以方便的上传和下载：</p>
 <ul>
 <li>在Finalshell中浏览文件系统，找到合适的文件，右键点击下载，即可传输到本地电脑</li>
@@ -836,13 +836,13 @@
 <p><img src="D:\学习资料\实验室培训\运维\image\image-20241218164621375.png" alt="image-20241218164621375"></p>
 <h2 id="rz、sz命令"><a href="#rz、sz命令" class="headerlink" title="rz、sz命令"></a>rz、sz命令</h2><p>可以通过rz、sz命令进行文件传输</p>
 <p>安装语法：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum -y install lrzsz</span><br></pre></td></tr></table></figure>
+<figure class="highlight cmake"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum -y <span class="keyword">install</span> lrzsz</span><br></pre></td></tr></table></figure>
 <ul>
 <li><p>rz命令，进行上传，语法：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rz</span><br></pre></td></tr></table></figure>
+<figure class="highlight ebnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">rz</span></span><br></pre></td></tr></table></figure>
 </li>
 <li><p>sz命令下载，语法</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sz 要下载的文件</span><br></pre></td></tr></table></figure>
+<figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">sz</span> 要下载的文件</span><br></pre></td></tr></table></figure>
 <p>文件会自动下载到桌面的：fsdownload文件夹中</p>
 </li>
 </ul>
@@ -853,7 +853,7 @@
 </ul>
 <p>针对这两种格式，使用tar命令均可以进行压缩和解压的操作</p>
 <p>语法：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tar [-c -v -x -f -z -C]参数1 参数2 ... 参数N</span><br></pre></td></tr></table></figure>
+<figure class="highlight llvm"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tar [-<span class="keyword">c</span> -v -<span class="keyword">x</span> -f -z -C]参数<span class="number">1</span> 参数<span class="number">2</span> ... 参数N</span><br></pre></td></tr></table></figure>
 <ul>
 <li>-c，创建压缩文件，用于压缩模式</li>
 <li>-v，显示压缩、解压过程，用于查看进度</li>
@@ -896,7 +896,7 @@
 </ul>
 <h2 id="zip、unzip命令压缩或解压zip文件"><a href="#zip、unzip命令压缩或解压zip文件" class="headerlink" title="zip、unzip命令压缩或解压zip文件"></a>zip、unzip命令压缩或解压zip文件</h2><h3 id="zip命令压缩文件"><a href="#zip命令压缩文件" class="headerlink" title="zip命令压缩文件"></a>zip命令压缩文件</h3><p>可以使用zip命令，压缩文件位zip压缩包</p>
 <p>语法：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">zip [-r] 参数0 参数1 参数2 ... 参数N</span><br></pre></td></tr></table></figure>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">zip <span class="selector-attr">[-r]</span> 参数<span class="number">0</span> 参数<span class="number">1</span> 参数<span class="number">2</span> ... 参数N</span><br></pre></td></tr></table></figure>
 <ul>
 <li>-r，被压缩的包含文件夹的时候，需要使用-r选项，和rm，cp等命令的-r效果一致</li>
 <li>参数0，是创建的压缩包的名字，后面的参数是被压缩的文件</li>
@@ -912,7 +912,7 @@
 <p>将test、itheima两个文件夹和a.txt文件，压缩到test.zip文件内</p>
 <h3 id="unzip命令解压文件"><a href="#unzip命令解压文件" class="headerlink" title="unzip命令解压文件"></a>unzip命令解压文件</h3><p>使用unzip命令，可以方便的解压zip压缩包</p>
 <p>语法：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">unzip [-d] 参数</span><br></pre></td></tr></table></figure>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">unzip <span class="selector-attr">[-d]</span> 参数</span><br></pre></td></tr></table></figure>
 <ul>
 <li>-d，指定要解压去的位置，同tar的-C选项</li>
 <li>参数，被解压的zip压缩包文件</li>
